@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator App</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .examples {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .examples h3 {
+            margin-top: 0;
+        }
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .example {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        .download {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .tech-specs {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .meme-section {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .calculator {
+            background: #2c3e50;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            color: white;
+        }
+        .calc-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+        .calc-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .calc-btn {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .calc-btn:hover {
+            background: #2980b9;
+        }
+        .calc-result {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            min-height: 20px;
+            border: 2px solid #34495e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Advanced Calculator</h1>
+        <p class="subtitle">A powerful terminal-based calculator with equation solving, fractions, and natural language support</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔢 Basic & Advanced Math</h3>
+                <p>Supports all basic operations plus exponentiation (2^3 or 2**3), square roots, trigonometric functions, and more.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📐 Equation Solver</h3>
+                <p>Solves linear, quadratic, and cubic equations automatically. Handles both simple (2x+4=10) and complex equations.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🍰 Fraction Support</h3>
+                <p>Works with regular fractions (1/2 + 1/3) and mixed fractions (2 1/2 + 3/4) with exact arithmetic.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🗣️ Natural Language</h3>
+                <p>Type "9 squared", "sqrt of 16", or "5 cubed" instead of mathematical notation.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📊 Variables</h3>
+                <p>Set variables (x=5) and use them in calculations (x+3, 2*x). Perfect for algebra practice.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🧪 Newton-Raphson</h3>
+                <p>Solves complex cubic equations using numerical methods for any polynomial degree.</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h3>🖥️ Try the Calculator</h3>
+            <input type="text" id="calcInput" class="calc-input" placeholder="Enter expression (e.g., 2x+4=10, 1/2 + 1/3, 9 squared)" onkeypress="if(event.key==='Enter') calculate()">
+            <div class="calc-buttons">
+                <button class="calc-btn" onclick="calculate()">Calculate</button>
+                <button class="calc-btn" onclick="clearCalc()">Clear</button>
+                <button class="calc-btn" onclick="toggleMeme()">Meme Mode</button>
+            </div>
+            <div id="calcResult" class="calc-result">Enter an expression above...</div>
+        </div>
+
+        <div class="examples">
+            <h3>💡 Example Usage</h3>
+            <div class="example-grid">
+                <div class="example">Basic: 2+3*4 → 14</div>
+                <div class="example">Fractions: 1/2 + 1/3 → 5/6</div>
+                <div class="example">Mixed: 2 1/2 + 1/4 → 2 3/4</div>
+                <div class="example">Natural: 9 squared → 81</div>
+                <div class="example">Functions: sqrt(16) → 4</div>
+                <div class="example">Linear: 2x+4=10 → x=3</div>
+                <div class="example">Quadratic: x^2-4=0 → x=±2</div>
+                <div class="example">Variables: x=5, x+3 → 8</div>
+            </div>
+        </div>
+
+        <div class="meme-section">
+            <h3>😂 Meme Mode</h3>
+            <p>Toggle meme mode for fun responses! Try "9+10" for a surprise, or discover the legendary numbers 67 and 41!</p>
+        </div>
+
+        <div class="tech-specs">
+            <h3>🔧 Technical Specifications</h3>
+            <ul>
+                <li><strong>Platform:</strong> macOS Terminal Application</li>
+                <li><strong>Language:</strong> Python 3 with math libraries</li>
+                <li><strong>Features:</strong> Algebraic solving, Newton-Raphson method, fraction arithmetic</li>
+                <li><strong>Equation Types:</strong> Linear, Quadratic, Cubic, and higher-order polynomials</li>
+                <li><strong>Number Range:</strong> Supports integers up to ±100,000 via brute force, unlimited via algebraic methods</li>
+                <li><strong>Testing:</strong> Comprehensive test suite with 20+ test cases</li>
+            </ul>
+        </div>
+
+        <div class="download">
+            <h3>🚀 Get Started</h3>
+            <p>Run the calculator from your terminal:</p>
+            <div class="example" style="display: inline-block; margin: 10px;">
+                open ~/applications/Calculator/calc.app
+            </div>
+            <br><br>
+            <p>Or run tests to verify functionality:</p>
+            <div class="example" style="display: inline-block; margin: 10px;">
+                python3 ~/applications/Calculator/calc_tests.py
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #7f8c8d;">
+            <p>Built with ❤️ for advanced mathematical computing</p>
+        </div>
+    </div>
+
+    <script>
+        let variables = {};
+        let memeMode = false;
+
+        function parseNatural(expr) {
+            expr = expr.toLowerCase();
+            expr = expr.replace(/(\d+(?:\.\d+)?)\s+squared/g, '($1)**2');
+            expr = expr.replace(/(\d+(?:\.\d+)?)\s+cubed/g, '($1)**3');
+            expr = expr.replace(/sqrt\s+of\s+(\d+(?:\.\d+)?)/g, 'Math.sqrt($1)');
+            expr = expr.replace(/sqrt\s+(\d+(?:\.\d+)?)/g, 'Math.sqrt($1)');
+            expr = expr.replace(/sqrt\(([^)]+)\)/g, 'Math.sqrt($1)');
+            return expr;
+        }
+
+        function parseFractions(expr) {
+            // Mixed fractions: 2 1/2 -> (2*2+1)/2
+            expr = expr.replace(/(\d+)\s+(\d+)\/(\d+)/g, '(($1*$3+$2)/$3)');
+            // Regular fractions: 1/2 -> (1/2)
+            expr = expr.replace(/(\d+)\/(\d+)/g, '($1/$2)');
+            return expr;
+        }
+
+        function solveEquation(equation) {
+            let [left, right] = equation.split('=');
+            left = left.trim();
+            right = right.trim();
+            
+            let varMatch = left.match(/[a-zA-Z]/);
+            if (!varMatch) return "No variable found";
+            
+            let variable = varMatch[0];
+            
+            // Handle implicit multiplication
+            left = left.replace(/(\d)([a-zA-Z])/g, '$1*$2');
+            left = left.replace(/([a-zA-Z])\^(\d+)/g, '$1**$2');
+            
+            // Try brute force
+            for (let val = -1000; val <= 1000; val++) {
+                try {
+                    let testExpr = left.replace(new RegExp(variable, 'g'), val);
+                    testExpr = testExpr.replace(/(\d+)\*\*(\d+)/g, 'Math.pow($1,$2)');
+                    if (Math.abs(eval(testExpr) - eval(right)) < 0.0001) {
+                        return `${variable} = ${val}`;
+                    }
+                } catch(e) {}
+            }
+            return "Could not solve";
+        }
+
+        function calculate() {
+            let input = document.getElementById('calcInput').value.trim();
+            let result = document.getElementById('calcResult');
+            
+            if (!input) return;
+            
+            try {
+                // Handle equations
+                if (input.includes('=') && /[a-zA-Z]/.test(input)) {
+                    result.innerHTML = solveEquation(input);
+                    return;
+                }
+                
+                // Handle variable assignment
+                if (input.includes('=') && !/[+\-*/]/.test(input.split('=')[0])) {
+                    let [name, value] = input.split('=');
+                    variables[name.trim()] = parseFloat(value.trim());
+                    result.innerHTML = `Set ${name.trim()} = ${value.trim()}`;
+                    return;
+                }
+                
+                // Parse expression
+                let expr = parseNatural(input);
+                expr = parseFractions(expr);
+                expr = expr.replace(/(\d+(?:\.\d+)?|\w+)\^(\d+(?:\.\d+)?|\w+)/g, 'Math.pow($1,$2)');
+                
+                // Replace variables
+                for (let [name, value] of Object.entries(variables)) {
+                    expr = expr.replace(new RegExp(name, 'g'), value);
+                }
+                
+                // Meme responses
+                if (memeMode) {
+                    if (input === '9+10') {
+                        result.innerHTML = "= 21 😂";
+                        return;
+                    }
+                    if (input === '67') {
+                        result.innerHTML = "= THE MEME NUMBER 67! 🔥";
+                        return;
+                    }
+                    if (input === '41') {
+                        result.innerHTML = "= 41! The answer to everything (almost) 🤔";
+                        return;
+                    }
+                }
+                
+                let res = eval(expr);
+                result.innerHTML = `= ${res}`;
+                
+            } catch(e) {
+                result.innerHTML = "Error: " + e.message;
+            }
+        }
+
+        function clearCalc() {
+            document.getElementById('calcInput').value = '';
+            document.getElementById('calcResult').innerHTML = 'Enter an expression above...';
+        }
+
+        function toggleMeme() {
+            memeMode = !memeMode;
+            document.getElementById('calcResult').innerHTML = `Meme mode: ${memeMode ? 'ON 😂' : 'OFF'}`;
+        }
+    </script>
+</body>
+</html>
