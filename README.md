@@ -38,9 +38,6 @@ Calculator App is a unique calculator that understands natural language input, h
 - 📊 **Word Problems** - Solve complex word problems with ease
 - 🔄 **Unit Conversion** - Convert between different units seamlessly
 
-## Screenshots
-
-*(Coming soon)*
 
 ## Installation
 
@@ -65,22 +62,6 @@ pip install -e .
 
 ```bash
 calc-app
-```
-
-Or use it directly:
-
-```bash
-calc "what is 1/3 plus 1/4?"
-```
-
-## Example Commands
-
-```
-"what is 1/3 plus 1/4?"
-"calculate the area of a circle with radius 5"
-"convert 100 fahrenheit to celsius"
-"solve: 2x + 5 = 15"
-"what is the derivative of x^2 + 3x?"
 ```
 
 ## Development
